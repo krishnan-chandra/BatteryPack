@@ -26,11 +26,11 @@ def make_flask_project(name):
 
 
 def make_django_project(name):
-    make_project(name, ' ')
+    make_project(name, 'django/')
 
 
 def make_rails_project(name):
-    make_project(name, ' ')
+    make_project(name, 'rails/')
 
 
 def make_node_js_project(name):
