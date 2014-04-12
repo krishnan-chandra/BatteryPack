@@ -34,7 +34,7 @@ def make_rails_project(name):
 
 
 def make_node_js_project(name):
-    make_project(name, ' ')
+    make_project(name, 'nodejs/')
 
 
 def main():
