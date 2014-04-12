@@ -2,6 +2,7 @@ __author__ = 'Krishnan Chandra'
 
 import argparse
 from subprocess import call
+import json
 
 
 def create_project(framework, name):
@@ -36,14 +37,16 @@ def make_rails_project(name):
 def make_node_js_project(name):
     make_project(name, 'nodejs/')
 
+def parse_config_file(fname):
+    with open(fname) as f:
+        config_dict = json.loads(f.read())
+        return config_dict
+
 
 def main():
     parser = argparse.ArgumentParser(description='Parse options for projects')
-    parser.add_argument('framework', choices=('flask', 'rails', 'nodejs'), type=str,
-                        help='The framework you want to use for this project.', metavar='framework')
-    parser.add_argument('name', type=str, help='The name of your project.', metavar='name')
+    parser.add_argument('config', type=str, help='The path to the JSON config file containing project config information', metavar='framework')
     args = parser.parse_args()
-    create_project(args.framework, args.name)
 
 
 if __name__ == "__main__":
