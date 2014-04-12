@@ -1,0 +1,7 @@
+{
+	"base": "ubuntu",
+	"db": "redis",
+	"middle": "flask",
+	"front_fmwk": "backbone",
+	"css_fmwk": "bootstrap"
+}
