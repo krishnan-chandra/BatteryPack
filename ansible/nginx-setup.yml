@@ -1,0 +1,16 @@
+---
+- hosts: webservers
+  user: {{ user }}
+  sudo: True
+  vars:
+    http_port: {{ port }}
+    max_clients: {{ max_clients }}
+
+  tasks:
+  - name: ensure nginx is at the latest version
+    apt: pkg=nginx state=latest
+  - name: ensure nginx is running
+    service: name=nginx state=started
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted

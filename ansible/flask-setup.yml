@@ -1,0 +1,16 @@
+---
+- user: "{{ user }}"
+  vars_files:
+    - vars/python-vars.yml
+  tasks:
+  - include: python-setup.yml
+  - name: set up the virtual environment
+    command: virtualenv {{ env_name }} creates={{ env_name }}
+  - name: install various libraries with pip
+    action: pip name=$item state=present virtualenv=${webapps_dir}/${app_name}/{{ env_name }} state=present
+    with_items:
+      - Flask
+      - Flask-SQLAlchemy
+      - Flask-WTF
+  - name: pull the flask repo
+    git: repo=https://github.com/mitsuhiko/flask.git dest=/home/ubuntu/flask

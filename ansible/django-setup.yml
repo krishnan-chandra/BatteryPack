@@ -1,0 +1,17 @@
+---
+- user: "{{ user }}"
+  vars_files:
+    - vars/python-vars.yml
+  hosts: webservers
+  tasks:
+  - include: python-setup.yml
+  - name: set up the virtual environment
+    command: virtualenv {{ env_name }} creates={{ env_name }}
+  - name: install dependencies into virtualenv
+    action: pip name=$item state=present virtualenv=${webapps_dir}/${app_name}/{{ env_name }} state=present
+    with_items:
+      - Django
+      - django-extensions
+      - South
+  - name: pull the django repo
+    git: repo=https://github.com/kirpit/django-sample-app.git dest={{ project_location }}

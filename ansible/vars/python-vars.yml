@@ -1,0 +1,8 @@
+---
+# Variables used in Python setup
+# The user that the Ansible scripts run under
+user: ubuntu
+# THe name we give to our virtual environment
+env_name: venv
+# The location where we place the project
+project_location: /home/ubuntu/flask
